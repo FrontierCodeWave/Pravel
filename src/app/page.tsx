@@ -1,6 +1,6 @@
 import Header from '@/layout/header/Header';
 
-import Date from '../components/main/Date';
+import DateViewer from '../components/main/DateViewer';
 import EmptyMain from '../components/main/EmptyMain';
 import FloatingBar from '../components/main/FloatingBar';
 import Snb from '../components/main/Snb';
@@ -13,12 +13,12 @@ export default function Home() {
         <Header />
         <Snb />
         <>
-          <Date />
+          <DateViewer />
           <EmptyMain />
         </>
         <FloatingBar />
       </main>
-      <TravelOptionsModal />
+      {/* <TravelOptionsModal /> */}
     </>
   );
 }
