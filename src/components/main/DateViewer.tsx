@@ -1,5 +1,9 @@
-const Date = () => {
-  // 오늘 날짜로 바로 보여지도록 설정하기
+import getDate from '@/utils/getDate';
+
+const DateViewer = () => {
+  const today: Date = new Date();
+  const formatDate = getDate(today);
+
   return (
     <article
       className="relative h-[80px] before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[53px] before:bg-primary
@@ -12,7 +16,9 @@ const Date = () => {
         >
           <h2 className="relative z-10">
             <strong className="block font-semibold text-primary">Day1</strong>
-            <span className="text-[20px] font-semibold">5월 4일 토요일</span>
+            <span className="text-[20px] font-semibold">
+              {`${formatDate.month}월 ${formatDate.day}일 ${formatDate.dayOfWeek}`}
+            </span>
           </h2>
           <div className="absolute top-0 left-0 w-full h-full flex px-[20px] ">
             <button className="ico_pravel ico_prev32">이전 날짜</button>
@@ -24,4 +30,4 @@ const Date = () => {
   );
 };
 
-export default Date;
+export default DateViewer;
