@@ -14,7 +14,7 @@ const daysOfWeek: string[] = [
   '토요일',
 ];
 
-const getDate = (date: Date): FormattedDate => {
+const getDates = (date: Date): FormattedDate => {
   const year: number = date.getFullYear();
   const month: number = date.getMonth() + 1;
   const day: number = date.getDate();
@@ -28,4 +28,4 @@ const getDate = (date: Date): FormattedDate => {
   };
 };
 
-export default getDate;
+export default getDates;
