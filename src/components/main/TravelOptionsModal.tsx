@@ -8,7 +8,7 @@ const TravelOptionsModal = () => {
       </button>
       <div>
         <div className="flex px-[40px] gap-[14px] items-stretch">
-          <button className="relative w-1/2 bg-gray-100 border border-gray-300 rounded-[20px] before:content-[''] before:block before:w-[56px] before:h-[56px] before:bg-[url('/img_pravel.png')] before:bg-[-112px_-128px] before:bg-[length:250px_250px] pt-[30px] pb-[24px]">
+          <button className="relative w-1/2 bg-gray-100 border border-gray-300 rounded-[20px] pt-[30px] pb-[24px] before:content-[''] before:block before:w-[56px] before:h-[56px] before:bg-[url('/img_pravel.png')] before:bg-[-112px_-128px] before:bg-[length:250px_250px] before:m-[0_auto]">
             <span className="absolute top-[10px]">
               New
               <span>3</span>
@@ -18,7 +18,7 @@ const TravelOptionsModal = () => {
 
           <Link
             href="/search"
-            className="w-1/2 bg-gray-100 border border-gray-300 rounded-[20px] before:content-[''] before:block before:w-[56px] before:h-[56px] before:bg-[url('/img_pravel.png')] before:bg-[-112px_-128px] before:bg-[length:250px_250px] pt-[30px] pb-[24px]"
+            className="w-1/2 bg-gray-100 border border-gray-300 rounded-[20px] pt-[30px] pb-[24px] before:content-[''] before:block before:w-[56px] before:h-[56px] before:bg-[url('/img_pravel.png')] before:bg-[-112px_-128px] before:bg-[length:250px_250px] before:m-[0_auto]"
           >
             <span className="block pt-[19px]">장소 탐색하기</span>
           </Link>
