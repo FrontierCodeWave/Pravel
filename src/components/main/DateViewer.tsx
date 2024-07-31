@@ -1,8 +1,27 @@
-import getDate from '@/utils/getDate';
+'use client';
 
-const DateViewer = () => {
-  const today: Date = new Date();
-  const formatDate = getDate(today);
+import { useState } from 'react';
+
+import getDates from '@/utils/getDates';
+
+const DateViewer: React.FC = () => {
+  const [currentDate, setCurrentDate] = useState<Date>(new Date());
+
+  const handlePrevDate = (): void => {
+    const prevDate: Date = new Date(currentDate);
+
+    prevDate.setDate(currentDate.getDate() - 1);
+    setCurrentDate(prevDate);
+  };
+
+  const handleNextDate = (): void => {
+    const nextDate: Date = new Date(currentDate);
+
+    nextDate.setDate(currentDate.getDate() + 1);
+    setCurrentDate(nextDate);
+  };
+  const formattedDate = getDates(currentDate);
+  // const formattedString: string = `${formattedDate.month}월 ${formattedDate.day}일 ${formattedDate.dayOfWeek}`;
 
   return (
     <article
@@ -17,12 +36,16 @@ const DateViewer = () => {
           <h2 className="relative z-10">
             <strong className="block font-semibold text-primary">Day1</strong>
             <span className="text-[20px] font-semibold">
-              {`${formatDate.month}월 ${formatDate.day}일 ${formatDate.dayOfWeek}`}
+              {`${formattedDate.month}월 ${formattedDate.day}일 ${formattedDate.dayOfWeek}`}
             </span>
           </h2>
           <div className="absolute top-0 left-0 w-full h-full flex px-[20px] ">
-            <button className="ico_pravel ico_prev32">이전 날짜</button>
-            <button className="ico_pravel ico_next32">다음 날짜</button>
+            <button onClick={handlePrevDate} className="ico_pravel ico_prev32">
+              이전 날짜
+            </button>
+            <button onClick={handleNextDate} className="ico_pravel ico_next32">
+              다음 날짜
+            </button>
           </div>
         </div>
       </div>
