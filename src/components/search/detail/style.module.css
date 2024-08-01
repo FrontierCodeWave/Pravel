@@ -1,0 +1,11 @@
+.text_ellipsis {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  height: 54px;
+  margin-bottom: 18px;
+  font-weight: 500;
+  color: hsla(219, 16%, 25%, 1);
+  line-height: 18px;
+}

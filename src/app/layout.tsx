@@ -6,6 +6,7 @@ import StoreProvider from '../provider/StoreProvider';
 
 import '../styles/global.css';
 import '../styles/icons.css';
+import '../styles/swiper.css';
 
 const pretendard = localFont({
   src: '../fonts/PretendardVariable.woff2',

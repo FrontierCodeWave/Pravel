@@ -1,0 +1,21 @@
+.swiper.swiper-review .swiper-wrapper {
+  /* overflow-x: hidden;
+  overflow-y: auto; */
+  padding-bottom: 68px;
+}
+.swiper-review .swiper-pagination-fraction,
+.swiper-review .swiper-pagination-custom,
+.swiper-review .swiper-horizontal > .swiper-pagination-bullets,
+.swiper-review .swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: 30px;
+}
+.swiper-review .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: hsla(216, 15%, 87%, 1);
+  opacity: 1;
+}
+.swiper-review .swiper-pagination-bullet-active {
+  background-color: hsla(162, 89%, 41%, 1);
+}
