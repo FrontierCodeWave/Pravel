@@ -45,7 +45,9 @@ const InfoBox = () => {
         </li>
         <li className="mb-[10px]">
           <span className="ico_pravel ico_site24 mr-[4px]">관련 사이트</span>
-          instagram.com
+          <a href="instagram.com" target="_blank">
+            instagram.com
+          </a>
         </li>
         <li className="mb-[10px] font-bold text-primary">
           <span className="ico_pravel ico_phone24 mr-[4px]">연락처</span>

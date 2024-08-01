@@ -35,12 +35,11 @@ const ReviewSwiper = () => {
         ]}
       >
         <SwiperSlide>
-          <div className="flex mb-[10px] text-[16px]">
+          <div className="flex items-center mb-[10px] text-[16px]">
             <span className="w-[36px] h-[36px] mr-[16px] bg-gray-700 rounded-full">
               {/* <img src="" alt="" className="" /> */}
             </span>
             <span className="font-semibold">김여행</span>
-            <span className="ico_pravel ico_p ml-[4px]"></span>
             <span className="ml-auto font-medium text-gray-700">
               <span className="ico_pravel ico_star14 mr-[4px]">평점</span>
               4.5
@@ -57,7 +56,7 @@ const ReviewSwiper = () => {
                 타코가 제일 맛있어요! 바다도 보이고 좋아요.샐러드도 신선하고
                 맛있어요.최고예요! 샐러드도 신선하고 맛있어요.
               </p>
-              <div className="flex">
+              <div className="flex justify-between">
                 <strong className="screen_out">연관 태그</strong>
                 <ul className="flex justify-start gap-[3px]">
                   <li className="tag_bd_gray px-[9px] py-[6px] bg-white text-[12px]">

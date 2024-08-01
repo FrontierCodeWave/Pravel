@@ -18,7 +18,7 @@ const HeaderDetail = ({ moveTo }: Props) => {
   };
 
   return (
-    <header className="z-10 fixed left-[50%] top-0 flex_between w-full max-w-[780px] min-w-[390px] height-[24px] px-[16px] py-[20px] translate-x-[-50%] leading-[24px] bg-white">
+    <header className="z-10 fixed left-[50%] top-0 flex justify-between items-center w-full max-w-[780px] min-w-[390px] height-[24px] px-[16px] py-[20px] translate-x-[-50%] leading-[24px] bg-white">
       <button
         type="button"
         className="ico_pravel ico_prev24"

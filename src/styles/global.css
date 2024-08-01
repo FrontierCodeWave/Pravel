@@ -9,9 +9,6 @@
   .margin_center {
     @apply mx-auto my-0;
   }
-  .flex_between {
-    @apply flex justify-between items-center;
-  }
 
   .box_search {
     @apply px-[16px] py-[30px] box-border border-b-[9px] border-gray-100;
@@ -23,7 +20,7 @@
     @apply px-[6px] py-[3px] rounded-[4px] box-border bg-gray-100 text-gray-600;
   }
   .tag_bd_gray {
-    @apply px-[11px] py-[7px] border-[1.5px] border-gray-400 rounded-[26px] text-[14px] text-gray-600 box-border leading-[16px];
+    @apply px-[11px] py-[7px] border-[1.5px] border-gray-400 rounded-[26px] text-[14px] text-gray-600 box-border leading-[16px] whitespace-nowrap;
   }
   .btn_bg_black {
     @apply w-full h-[54px] bg-black rounded-[12px] text-white text-[15px] font-semibold;
