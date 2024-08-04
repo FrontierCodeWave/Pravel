@@ -1,4 +1,4 @@
-import { baseURL, getAuthorization, setDefaultHeader } from '.';
+import { baseURL } from '.';
 
 const TOUR = '/tour/';
 
