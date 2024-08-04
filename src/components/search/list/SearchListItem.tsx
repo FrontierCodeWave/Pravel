@@ -1,17 +1,21 @@
 'use client';
 
+import { getLocation, useFetchTour } from '@/hook/useTour';
+
 interface listTypes {
   type: string;
 }
 
 const SearchListItem = ({ type }: listTypes) => {
-  // console.log(data, isError, isLoading);
+  const { data } = useFetchTour();
+
+  console.log(data);
 
   return (
     <>
       <strong className="screen_out">{type} 리스트</strong>
       <ul>
-        <li className="flex border-solid border-b-[1px] border-gray-300">
+        <li className="flex items-center border-solid border-b-[1px] border-gray-300">
           <button className="flex grow justify-start py-[20px]">
             {/* <Image
               src=""
