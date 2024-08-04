@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { getAuthorization } from '@/services/api';
 import * as tourApi from '@/services/api/tour.api';
 
 export function getLocation(): Promise<[number, number]> {
@@ -22,8 +21,6 @@ export function getLocation(): Promise<[number, number]> {
 }
 
 export const useFetchTour = () => {
-  const { email } = getAuthorization();
-
   return useQuery({
     queryKey: ['tour'],
     queryFn: async () => {

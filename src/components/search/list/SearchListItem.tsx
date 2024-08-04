@@ -1,6 +1,6 @@
 'use client';
 
-import { getLocation, useFetchTour } from '@/hook/useTour';
+import { useFetchTour } from '@/hook/useTour';
 
 interface listTypes {
   type: string;
