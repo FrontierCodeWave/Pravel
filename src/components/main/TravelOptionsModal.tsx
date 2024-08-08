@@ -4,10 +4,7 @@ interface modalOpenType {
   modalOpen: boolean;
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const TravelOptionsModal: React.FC<modalOpenType> = ({
-  modalOpen,
-  setModalOpen,
-}) => {
+const TravelOptionsModal = ({ modalOpen, setModalOpen }: modalOpenType) => {
   const onOpenModal = () => {
     setModalOpen(!modalOpen);
   };
