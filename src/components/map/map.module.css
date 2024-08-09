@@ -1,0 +1,9 @@
+.txt_marker{
+  padding: 5px 10px;
+  box-sizing: border-box;
+  background-color: black;
+  border-radius: 19px;
+  font-size: 11px;
+  line-height: 13px;
+  color: #fff;
+}

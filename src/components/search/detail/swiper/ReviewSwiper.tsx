@@ -5,11 +5,13 @@ import SwiperCore from 'swiper';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import StarImg from '@/components/svg/ico_star.svg';
+
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import 'swiper/css';
-import style from './style.module.css';
+import style from '../../search.module.css';
 
 const ReviewSwiper = () => {
   const swiperRef = useRef<SwiperCore>();
@@ -33,8 +35,8 @@ const ReviewSwiper = () => {
               {/* <img src="" alt="" className="" /> */}
             </span>
             <span className="font-semibold">김여행1</span>
-            <span className="ml-auto font-medium text-gray-700">
-              <span className="ico_pravel ico_star14 mr-[4px]">평점</span>
+            <span className="flex items-center ml-auto font-medium text-gray-700">
+              <StarImg width={14} height={14} alt="평점" className="mr-[4px]" />
               4.5
             </span>
           </div>
@@ -82,8 +84,8 @@ const ReviewSwiper = () => {
               {/* <img src="" alt="" className="" /> */}
             </span>
             <span className="font-semibold">김여행2</span>
-            <span className="ml-auto font-medium text-gray-700">
-              <span className="ico_pravel ico_star14 mr-[4px]">평점</span>
+            <span className="flex items-center ml-auto font-medium text-gray-700">
+              <StarImg width={14} height={14} alt="평점" className="mr-[4px]" />
               4.5
             </span>
           </div>
@@ -127,8 +129,8 @@ const ReviewSwiper = () => {
               {/* <img src="" alt="" className="" /> */}
             </span>
             <span className="font-semibold">김여행3</span>
-            <span className="ml-auto font-medium text-gray-700">
-              <span className="ico_pravel ico_star14 mr-[4px]">평점</span>
+            <span className="flex items-center ml-auto font-medium text-gray-700">
+              <StarImg width={14} height={14} alt="평점" className="mr-[4px]" />
               4.5
             </span>
           </div>

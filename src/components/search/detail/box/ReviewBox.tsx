@@ -1,9 +1,11 @@
-import ReviewSwiper from './ReviewSwiper';
+import ReviewSwiper from '../swiper/ReviewSwiper';
+
+import style from './box.module.css';
 
 const ReviewBox = () => {
   return (
-    <div className="box_search">
-      <strong className="tit_search">:P의 리뷰</strong>
+    <div className={style.box_detail}>
+      <strong className={style.tit_detail}>:P의 리뷰</strong>
       <div className="flex justify-start items-center mb-[20px]">
         <strong className="mr-[12px] pr-[12px] border-r-[1px] border-gray-300 font-semibold text-[15px] text-gray-600 whitespace-nowrap">
           리뷰 32개

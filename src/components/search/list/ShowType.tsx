@@ -1,13 +1,14 @@
 'use client';
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
-const ShowTypeList = () => {
+interface Props {
+  type: string | null;
+}
+
+const ShowTypeList = ({ type }: Props) => {
   const router = useRouter();
   const pathname = usePathname();
-  const params = useSearchParams();
-
-  const type = params.get('type');
 
   return (
     <div className="flex justify-start py-[16px]">

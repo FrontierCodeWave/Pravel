@@ -1,11 +1,11 @@
-import InfoBox from '@/components/search/detail/InfoBox';
-import ReviewBox from '@/components/search/detail/ReviewBox';
-import TalkBox from '@/components/search/detail/TalkBox';
-import UtilBox from '@/components/search/detail/UtilBox';
+import InfoBox from '@/components/search/detail/box/InfoBox';
+import ReviewBox from '@/components/search/detail/box/ReviewBox';
+import TalkBox from '@/components/search/detail/box/TalkBox';
+import UtilBox from '@/components/search/detail/box/UtilBox';
 
 const DetailContent = () => {
   return (
-    <div className="pb-[92px]">
+    <div className="pt-[64px] pb-[92px]">
       <div className="relative">
         <img src="/img_dummy.png" alt="" className="object-cover bg-gray-700" />
         <button

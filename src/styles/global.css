@@ -9,13 +9,6 @@
   .margin_center {
     @apply mx-auto my-0;
   }
-
-  .box_search {
-    @apply px-[16px] py-[30px] box-border border-b-[9px] border-gray-100;
-  }
-  .tit_search {
-    @apply inline-block mb-[20px] font-bold text-[18px];
-  }
   .tag_bg_gray {
     @apply px-[6px] py-[3px] rounded-[4px] box-border bg-gray-100 text-gray-600;
   }

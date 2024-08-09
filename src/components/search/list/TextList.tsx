@@ -1,22 +1,16 @@
-'use client';
+import Link from 'next/link';
 
-import { useFetchTour } from '@/hook/useTour';
+import StarImg from '@/components/svg/ico_star.svg';
 
-interface listTypes {
-  type: string;
-}
-
-const SearchListItem = ({ type }: listTypes) => {
-  const { data } = useFetchTour();
-
-  console.log(data);
-
+const List = () => {
   return (
     <>
-      <strong className="screen_out">{type} 리스트</strong>
       <ul>
         <li className="flex items-center border-solid border-b-[1px] border-gray-300">
-          <button className="flex grow justify-start py-[20px]">
+          <Link
+            href="/search/detail/goo"
+            className="flex grow justify-start py-[20px]"
+          >
             {/* <Image
               src=""
               alt=""
@@ -24,12 +18,17 @@ const SearchListItem = ({ type }: listTypes) => {
             /> */}
             <div className="text-left font-semibold">
               <strong className="mb-[8px] text-[18px] leading-[30px] font-semibold text-gray-900">
-                {type}이름
+                이름
               </strong>
-              <div className="mb-[6px] text-gray-700">
+              <div className="flex mb-[6px] text-gray-700">
                 <span>양식</span>
-                <span className="mx-[8px]">
-                  <span className="ico_pravel ico_star14">평점</span>
+                <span className="flex items-center mx-[8px]">
+                  <StarImg
+                    width={14}
+                    height={14}
+                    alt="평점"
+                    className="mr-[4px]"
+                  />
                   4.5
                 </span>
                 <span className="pl-[8px] border-l-[1px] border-solid border-gray-300 text-gray-500">
@@ -42,7 +41,7 @@ const SearchListItem = ({ type }: listTypes) => {
                 </span>
               </div>
             </div>
-          </button>
+          </Link>
           <div className="w-[43px] ml-[10px] text-center">
             <button type="button">
               <span className="ico_pravel ico_like32_on">좋아요</span>
@@ -57,4 +56,4 @@ const SearchListItem = ({ type }: listTypes) => {
   );
 };
 
-export default SearchListItem;
+export default List;

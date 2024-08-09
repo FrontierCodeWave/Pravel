@@ -1,0 +1,29 @@
+.box_detail {
+padding: 30px 16px;
+box-sizing: border-box;
+border-bottom: 9px solid theme('colors.gray.100');
+}
+.tit_detail {
+  display: inline-block;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 18px;
+}
+.item_info{
+  display: flex;
+  margin-bottom: 10px;
+}
+.list_tag{
+  display: flex;
+  justify-self: start;
+  gap: 4px;
+  margin-top: 12px;
+}
+.tag_bg {
+  padding: 3px 6px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: theme('colors.gray.100');
+  font-size: 14px;
+  color: theme('colors.gray.600');
+}

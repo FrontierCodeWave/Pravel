@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  flex?: boolean;
   border?: boolean;
   borderColor?: string;
   fill?: string;
@@ -11,7 +12,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button = (props: ButtonProps) => {
   const {
-    border = true,
+    flex,
+    border,
     borderColor,
     fill,
     children,
@@ -20,8 +22,11 @@ const Button = (props: ButtonProps) => {
     ...rest
   } = props;
   const classNames = useMemo(() => {
-    let base =
-      'w-full h-[70px] flex items-center justify-center bg-primary border-none text-white font-bold text-[18px]';
+    let base = 'bg-primary border-none text-white font-bold';
+
+    if (flex) {
+      base += ' flex items-center justify-center';
+    }
 
     if (border) {
       base += ' border-solid border-[1px] border-[#7b7b7b]';
@@ -40,7 +45,7 @@ const Button = (props: ButtonProps) => {
     }
 
     return `${base} ${className}`;
-  }, [border, borderColor, className, color, fill]);
+  }, [flex, border, borderColor, className, color, fill]);
 
   return (
     <button className={classNames} {...rest}>
