@@ -1,11 +1,10 @@
 'use client';
 
-import { useCallback } from 'react';
-import { useRouter } from 'next/navigation';
+import { useFormState } from 'react-dom';
 
 import ControlInput from '@/components/auth/ControlInput';
 import InputForm from '@/components/form/InputForm';
-import { useLogin } from '@/hook/useAuth';
+import login from '@/lib/actions/auth-action';
 import { ERROR_MESSAGE, PLACEHOLDER } from '@/lib/const/auth-message';
 import { LoginForm as LoginFormType } from '@/types/auth.type';
 
@@ -20,18 +19,10 @@ const data: LoginFormType = {
 };
 
 const LoginForm = () => {
-  const login = useLogin();
-  const router = useRouter();
-
-  const onSubmit = useCallback(
-    async (form: LoginFormType) => {
-      try {
-        await login.mutateAsync(form);
-        router.push('/');
-      } catch {}
-    },
-    [login, router],
-  );
+  const [error, loginAction] = useFormState(login, false);
+  const onSubmit = (form: LoginFormType) => {
+    loginAction(form);
+  };
 
   return (
     <InputForm
@@ -41,6 +32,7 @@ const LoginForm = () => {
           <Button type="submit">로그인</Button>
         </>
       }
+      error={error}
       render={(control) => (
         <>
           <AuthFormItem control={control} name="email">

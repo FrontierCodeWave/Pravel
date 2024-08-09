@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { getAuthorization, setAuthorization } from '../services/api';
+import { getAuthorization } from '../services/api';
 import * as authApi from '../services/api/auth.api';
 import authKey from '../services/key/auth';
 import { User } from '../types/auth.type';
@@ -30,23 +30,6 @@ export const useUser = () => {
     updateUser,
     clearUser,
   };
-};
-
-export const useLogin = () => {
-  const { updateUser } = useUser();
-
-  return useMutation({
-    mutationFn: authApi.login,
-
-    onSuccess: ({ user, token }) => {
-      updateUser(user);
-      setAuthorization(user.email, token);
-    },
-
-    onError: () => {
-      alert('아이디 또는 비밀번호를 확인해주세요.');
-    },
-  });
 };
 
 export const useLogout = () => {

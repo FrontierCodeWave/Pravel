@@ -71,7 +71,7 @@ const JoinForm = () => {
               rules={{
                 validate: (value) => {
                   if (!value.trim()) {
-                    return ERROR_MESSAGE.required.email;
+                    return ERROR_MESSAGE.required.nickname;
                   }
 
                   if (value.includes(' ')) {
