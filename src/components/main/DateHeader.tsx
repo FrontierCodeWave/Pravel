@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import getDates from '@/utils/getDates';
 
-const DateViewer: React.FC = () => {
+const DateHeader: React.FC = () => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
 
   const handlePrevDate = (): void => {
@@ -33,13 +33,13 @@ const DateViewer: React.FC = () => {
         <div
           className={`w-full h-full relative z-[2] flex item-center justify-center text-center`}
         >
-          <h2 className="relative z-10">
+          <h2 className="relative z-10 flex flex-col justify-center">
             <strong className="block font-semibold text-primary">Day1</strong>
             <span className="text-[20px] font-semibold">
               {`${formattedDate.month}월 ${formattedDate.day}일 ${formattedDate.dayOfWeek}`}
             </span>
           </h2>
-          <div className="absolute top-0 left-0 w-full h-full flex px-[20px] ">
+          <div className="absolute top-0 left-0 w-full h-full flex justify-between items-center px-[20px] ">
             <button onClick={handlePrevDate} className="ico_pravel ico_prev32">
               이전 날짜
             </button>
@@ -53,4 +53,4 @@ const DateViewer: React.FC = () => {
   );
 };
 
-export default DateViewer;
+export default DateHeader;

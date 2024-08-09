@@ -29,10 +29,6 @@
     @apply w-[8px] h-[8px] rounded-full bg-gray-300;
   }
   .blind {
-    display: inline-block;
-    overflow: hidden;
-    font-size: 0;
-    line-height: 0;
-    text-indent: -9999px;
+    @apply inline-block overflow-hidden text-[0px] leading-[0] indent-[-9999px];
   }
 }

@@ -1,0 +1,50 @@
+.schedule_item:nth-child(odd) {
+  padding-left: 8.21vw;
+}
+.schedule_item:nth-child(even) {
+  flex-direction: row-reverse;
+  padding-right: 8.21vw;
+}
+.schedule_item:nth-child(even) .schedule_info {
+  align-items: flex-end;
+}
+.category {
+  position: relative;
+  display: inline-block;
+  height: 24px;
+  padding-right: 8px;
+  padding-left: calc(24px + 8px);
+  border-radius: 5px;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 24px;
+  box-sizing: border-box;
+}
+.category::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 8px;
+  width: 24px;
+  height: 24px;
+  margin-right: 2px;
+  background-repeat: no-repeat;
+  background-image: url('/img_pravel.png');
+  background-size: 300px 300px;
+}
+.category.category_restaurant {
+  color: #34a8e9;
+  background-color: #0095e91c;
+}
+.category.category_restaurant::before {
+  background-position: -80px -208px;
+}
+.category.category_sightseeing {
+  color: #f3868c;
+  background-color: #ff74b71c;
+}
+.category.category_sightseeing::before {
+  background-position: -56px -208px;
+}

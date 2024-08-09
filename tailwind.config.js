@@ -31,6 +31,20 @@ module.exports = {
       fontFamily: {
         pretendard: ['var(--font-pretendard)'],
       },
+      keyframes: {
+        modalUp: {
+          from: { transform: 'translateY(100%)' },
+          to: { transform: 'translateY(0)' },
+        },
+        modalDown: {
+          from: { transform: 'translateY(0)' },
+          to: { transform: 'translateY(-100%)' },
+        },
+      },
+      animation: {
+        modalUp: 'modalUp .5s ease-in-out',
+        modalDown: 'modalDown .5s ease-in-out',
+      },
     },
   },
   plugins: [require('tailwind-scrollbar-hide')],

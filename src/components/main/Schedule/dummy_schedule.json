@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "img": "test1.jpg",
+    "category": "식당",
+    "title": "제주로운청해원 성산",
+    "description": "갈치조림 아침 식사"
+  },
+  {
+    "id": 2,
+    "img": "test2.jpg",
+    "category": "관광",
+    "title": "성산포항 여객터미널",
+    "description": "배타고 우도여행"
+  },
+  {
+    "id": 3,
+    "img": "test3.jpg",
+    "category": "식당",
+    "title": "달리그안",
+    "description": "검멀레 해변 옆 카페"
+  }
+]

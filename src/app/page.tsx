@@ -2,30 +2,46 @@
 
 import { useState } from 'react';
 
+import WishList from '@/components/main/AddOption/WishList';
+import ScheduleList from '@/components/main/Schedule/ScheduleList';
 import Header from '@/layout/header/Header';
 
-import DateViewer from '../components/main/DateViewer';
-import EmptyMain from '../components/main/EmptyMain';
+import AddOption from '../components/main/AddOption/AddOption';
+import DateViewer from '../components/main/DateHeader';
 import FloatingBar from '../components/main/FloatingBar';
-import Snb from '../components/main/Snb';
-import TravelOptionsModal from '../components/main/TravelOptionsModal';
+import Gnb from '../layout/navigation/Gnb';
 
-const Home: React.FC = () => {
-  const [modalOpen, setModalOpen] = useState<boolean>(false);
+const Home = () => {
+  const [openModalAddOption, setOpenModalAddOption] = useState<boolean>(false);
+  const [openModalWishList, setOpenModalWishList] = useState<boolean>(false);
 
   return (
     <>
-      <main className="relative">
+      <main className="relative min-h-svh">
         <Header />
-        <Snb />
+        <Gnb />
         <>
           <DateViewer />
-          <EmptyMain />
+          <ScheduleList />
         </>
-        <FloatingBar modalOpen={modalOpen} setModalOpen={setModalOpen} />
+        <FloatingBar
+          openModalAddOption={openModalAddOption}
+          setOpenModalAddOption={setOpenModalAddOption}
+        />
       </main>
-      {modalOpen && (
-        <TravelOptionsModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+      {openModalAddOption && (
+        <AddOption
+          openModalAddOption={openModalAddOption}
+          setOpenModalAddOption={setOpenModalAddOption}
+          openModalWishList={openModalWishList}
+          setOpenModalWishList={setOpenModalWishList}
+        />
+      )}
+      {openModalWishList && (
+        <WishList
+          openModalWishList={openModalWishList}
+          setOpenModalWishList={setOpenModalWishList}
+        />
       )}
     </>
   );
