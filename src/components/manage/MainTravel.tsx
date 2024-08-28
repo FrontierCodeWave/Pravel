@@ -20,20 +20,30 @@ const MainTravel = () => {
             이미지 수정하기
           </button>
         </div>
-        <ul className="relative z-10">
+        <ul className="relative z-10 w-[225px] mt-[25px] mb-[30px] mx-[auto]">
           <li className="flex gap-[20px] text-[14px] text-gray-600">
-            <strong className="basis-[43px] text-gray-800">장소</strong>제주도
+            <strong className="basis-[43px] font-normal text-gray-800">
+              장소
+            </strong>
+            제주도
           </li>
           <li className="flex gap-[20px] text-[14px] text-gray-600">
-            <strong className="basis-[43px] text-gray-800">날짜</strong>
+            <strong className="basis-[43px] font-normal text-gray-800">
+              날짜
+            </strong>
             2023.05.04 - 2023.05.08
           </li>
           <li className="flex gap-[20px] text-[14px] text-gray-600">
-            <strong className="basis-[43px] text-gray-800">시작-끝</strong>In
-            제주공항 - Out 제주공항
+            <strong className="basis-[43px] font-normal text-gray-800">
+              시작-끝
+            </strong>
+            In 제주공항 - Out 제주공항
           </li>
           <li className="flex gap-[20px] text-[14px] text-gray-600">
-            <strong className="basis-[43px] text-gray-800">인원</strong>성인2명
+            <strong className="basis-[43px] font-normal text-gray-800">
+              인원
+            </strong>
+            성인2명
           </li>
         </ul>
       </div>
