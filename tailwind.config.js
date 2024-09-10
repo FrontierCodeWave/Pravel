@@ -29,6 +29,7 @@ module.exports = {
     extend: {
       fontFamily: {
         pretendard: ['var(--font-pretendard)'],
+        rajdhani: ['var(--font-rajdhani)'],
       },
       keyframes: {
         modalUp: {

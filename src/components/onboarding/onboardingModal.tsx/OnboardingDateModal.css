@@ -1,0 +1,85 @@
+@import '/src/styles/tailwind.css';
+
+.onboarding-modal {
+  text-align: center;
+}
+.onboarding-modal .react-datepicker * {
+  font-family: Pretendard;
+  color: theme('colors.gray.900');
+}
+.onboarding-modal .react-datepicker {
+  border: none;
+  float: none;
+}
+.onboarding-modal .react-datepicker__header {
+  background-color: transparent;
+  border-bottom: none;
+}
+.onboarding-modal .react-datepicker__current-month {
+  padding-bottom: 25px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.onboarding-modal .react-datepicker__navigation-icon {
+  width: 16px;
+  height: 16px;
+  background: url('/img_pravel.png') no-repeat;
+  background-position: -250px 0;
+  background-size: 300px 300px;
+}
+
+.onboarding-modal .react-datepicker__navigation-icon::before {
+  content: none;
+}
+.onboarding-modal .react-datepicker__navigation-icon--previous {
+  transform: rotate(180deg);
+}
+
+.onboarding-modal .react-datepicker__day-name,
+.onboarding-modal .react-datepicker__day {
+  font-size: 14px;
+  font-weight: 600;
+}
+.onboarding-modal .react-datepicker__day-name {
+  margin: 8px;
+}
+.onboarding-modal .react-datepicker__day-name[aria-label='일요일'] {
+  color: #ff6b4a;
+}
+.onboarding-modal .react-datepicker__day-name[aria-label='토요일'] {
+  color: #568aff;
+}
+
+.onboarding-modal .react-datepicker__day {
+  position: relative;
+  margin: 8px;
+  border-radius: 50%;
+  transition: background 0.25s;
+}
+
+/* 완전히 선택된 상태 */
+.react-datepicker__day--selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range {
+  background-color: #daf1ec;
+}
+
+/* 선택된 상태에서 hover */
+.onboarding-modal .react-datepicker__day--range-start,
+.onboarding-modal .react-datepicker__day--range-end,
+.react-datepicker__day--selected:hover,
+.react-datepicker__day--in-selecting-range:hover,
+.react-datepicker__day--in-range:hover {
+  background-color: theme('colors.primary');
+  color: theme('colors.white');
+}
+
+.react-datepicker__day--in-selecting-range:not(
+    .react-datepicker__day--in-range,
+    .react-datepicker__month-text--in-range,
+    .react-datepicker__quarter-text--in-range,
+    .react-datepicker__year-text--in-range
+  ) {
+  background: #daf1ec;
+}

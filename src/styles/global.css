@@ -24,4 +24,7 @@
   .blind {
     @apply inline-block overflow-hidden text-[0px] leading-[0] indent-[-9999px];
   }
+  .input_box_gray {
+    @apply bg-gray-100 w-full py-[14px] px-[20px] rounded-lg flex justify-between items-center;
+  }
 }

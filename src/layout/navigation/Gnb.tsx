@@ -12,7 +12,7 @@ const Gnb = () => {
         </li>
         <li className="w-[calc(100%_/_3)] flex flex-col items-center">
           <Link
-            href={''}
+            href="/travel-record"
             className="ico_pravel margin_center ico_records"
           ></Link>
           <span className="text-[11px]">여행기록</span>

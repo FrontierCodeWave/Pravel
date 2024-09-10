@@ -13,12 +13,15 @@ const daysOfWeek: string[] = [
   '금요일',
   '토요일',
 ];
+const daysOfWeekShort: string[] = ['일', '월', '화', '수', '목', '금', '토'];
 
-const getDates = (date: Date): FormattedDate => {
+const getDates = (date: Date, short: boolean = false): FormattedDate => {
   const year: number = date.getFullYear();
   const month: number = date.getMonth() + 1;
   const day: number = date.getDate();
-  const dayOfWeek: string = daysOfWeek[date.getDay()];
+  const dayOfWeek: string = short
+    ? daysOfWeekShort[date.getDay()]
+    : daysOfWeek[date.getDay()];
 
   return {
     year,

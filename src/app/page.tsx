@@ -1,11 +1,11 @@
 'use client';
 
-import WishList from '@/components/main/AddOption/WishList';
-import ScheduleList from '@/components/main/Schedule/ScheduleList';
+import WishList from '@/components/main/addOption/WishList';
+import ScheduleList from '@/components/main/schedule/ScheduleList';
 import useModal from '@/hook/useModal';
 import Header from '@/layout/header/Header';
 
-import AddOption from '../components/main/AddOption/AddOption';
+import AddOption from '../components/main/addOption/AddOption';
 import DateViewer from '../components/main/DateHeader';
 import FloatingBar from '../components/main/FloatingBar';
 import Gnb from '../layout/navigation/Gnb';
