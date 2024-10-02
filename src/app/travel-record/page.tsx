@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import SwiperCarousel from '@/components/common/carousel/SwiperCarousel';
 import TravelList from '@/components/record/TravelList';
 import Gnb from '@/layout/navigation/Gnb';
@@ -33,7 +35,18 @@ const TravelRecord = async () => {
         {list.length ? (
           <SwiperCarousel data={list} />
         ) : (
-          <div className="mx-auto w-[246px] h-[362px] bg-gray-200 rounded-[25px]" />
+          <div className="mx-auto flex flex-col justify-center items-center w-[246px] h-[362px] bg-gray-200 rounded-[25px]">
+            <Image
+              className="mx-auto"
+              src="/record/travel/default.png"
+              width={130}
+              height={130}
+              alt="default"
+            />
+            <p className="mt-[4px] font-semibold text-gray-500">
+              여행 기록이 없어요 :(
+            </p>
+          </div>
         )}
       </div>
       <div className="h-[9px] bg-gray-200 mt-[40px]"></div>
