@@ -1,7 +1,7 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 import getLocation from '@/services/api/location.api';
-import { getQuestList } from '@/services/api/quest.api';
+import { getQuest, getQuestList } from '@/services/api/quest.api';
 import { LocationData } from '@/types/search.type';
 
 export const useFetchQuestList = (enabled: boolean) => {
@@ -22,3 +22,11 @@ export const useFetchQuestList = (enabled: boolean) => {
     enabled,
   });
 };
+
+export const useFetchQuest = (questId: number) =>
+  useQuery({
+    queryKey: ['quest', questId],
+    queryFn: async () => {
+      return getQuest(questId);
+    },
+  });

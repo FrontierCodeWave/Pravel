@@ -18,3 +18,14 @@ export const getQuestList = async ({
 
     return res.json();
   });
+
+export const getQuest = async (questId: number): Promise<Quest> =>
+  fetch(`${baseURL}${QUEST}/${questId}`, {
+    headers: await setDefaultHeader(),
+  }).then((res) => {
+    if (!res.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    return res.json();
+  });

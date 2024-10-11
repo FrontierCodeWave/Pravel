@@ -4,7 +4,11 @@ import { useState } from 'react';
 
 import { useFetchQuestList } from '@/hook/useQuest';
 
-const QuestButton = () => {
+interface QuestButtonProps {
+  openQuest: (questId: number) => void;
+}
+
+const QuestButton = ({ openQuest }: QuestButtonProps) => {
   const [enabled, setEnabled] = useState(false);
   const { data } = useFetchQuestList(enabled);
 
@@ -22,6 +26,7 @@ const QuestButton = () => {
             <li
               key={quest.id}
               className="cursor-pointer bg-gray-900 w-[38px] h-[38px] text-white font-rajdhani rounded-full text-[20px] font-bold flex items-center justify-center"
+              onClick={() => openQuest(quest.id)}
             >
               {`Q${i + 1}`}
             </li>

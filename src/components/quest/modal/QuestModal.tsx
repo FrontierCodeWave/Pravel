@@ -1,14 +1,24 @@
+'use client';
+
 import Image from 'next/image';
 
 import ModalBackdrop from '@/components/mypage/modal/ModalBackdrop';
+import { useFetchQuest } from '@/hook/useQuest';
 
 interface QuestModalProps {
   id: number;
-  title: string;
-  energy: number;
+  close: () => void;
 }
 
-const QuestModal = ({ title, energy }: QuestModalProps) => {
+const QuestModal = ({ id }: QuestModalProps) => {
+  const { data: quest, isLoading, isError } = useFetchQuest(id);
+
+  if (isLoading) return null;
+  if (isError) {
+    close();
+    return null;
+  }
+
   return (
     <div className="fixed top-0 left-0 w-full h-dvh pt-[106px] z-50">
       <ModalBackdrop blur />
@@ -19,7 +29,7 @@ const QuestModal = ({ title, energy }: QuestModalProps) => {
         </h1>
         <p className="text-center mt-[25px]">
           <span className="text-white font-semibold leading-[19px]">
-            <span className="text-primary">[{title}]</span>하고 기념품을
+            <span className="text-primary">[{quest!.title}]</span>하고 기념품을
             받아보세요!
             <br /> 일정에 참여해 보실래요?
           </span>
@@ -30,7 +40,7 @@ const QuestModal = ({ title, energy }: QuestModalProps) => {
             <span className="text-white">퀘스트 보상</span>
             <span className="text-primary">
               <i className="ico_pravel ico_energy_fill24 mr-[4px]" />
-              에너지 {energy}%
+              에너지 {quest!.energy}%
             </span>
           </div>
         </div>

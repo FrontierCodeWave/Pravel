@@ -2,12 +2,13 @@ import QuestButton from './QuestButton';
 
 interface FloatingBarProps {
   openAddOption: () => void;
+  openQuest: (questId: number) => void;
 }
 
-const FloatingBar = ({ openAddOption }: FloatingBarProps) => {
+const FloatingBar = ({ openAddOption, openQuest }: FloatingBarProps) => {
   return (
     <ul className="fixed bottom-[101px] right-[16px] w-[56px]">
-      <QuestButton />
+      <QuestButton openQuest={openQuest} />
       <li className="bg-white rounded-full shadow-[0_0_10px_0_#0000001A] mb-[8px]">
         <button className="ico_pravel ico_plus56" onClick={openAddOption}>
           여행계획 추가하기
