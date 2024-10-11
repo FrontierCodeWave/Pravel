@@ -1,4 +1,4 @@
-import { Quest } from '@/types/quest.type';
+import { Quest, StartQuestRequest } from '@/types/quest.type';
 import { LocationData } from '@/types/search.type';
 
 import { baseURL, setDefaultHeader } from '.';
@@ -28,4 +28,18 @@ export const getQuest = async (questId: number): Promise<Quest> =>
     }
 
     return res.json();
+  });
+
+export const startQuest = async ({
+  id,
+  ...props
+}: StartQuestRequest): Promise<void> =>
+  fetch(`${baseURL}${QUEST}/${id}`, {
+    method: 'POST',
+    headers: await setDefaultHeader(),
+    body: JSON.stringify(props),
+  }).then((res) => {
+    if (!res.ok) {
+      throw new Error('Network response was not ok');
+    }
   });

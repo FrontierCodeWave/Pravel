@@ -1,9 +1,11 @@
 'use client';
 
+import { Bounce, toast } from 'react-toastify';
 import Image from 'next/image';
 
 import ModalBackdrop from '@/components/mypage/modal/ModalBackdrop';
-import { useFetchQuest } from '@/hook/useQuest';
+import { useFetchQuest, useStartQuestMutation } from '@/hook/useQuest';
+import { usePlanStateStore } from '@/store';
 
 interface QuestModalProps {
   id: number;
@@ -12,12 +14,22 @@ interface QuestModalProps {
 
 const QuestModal = ({ id }: QuestModalProps) => {
   const { data: quest, isLoading, isError } = useFetchQuest(id);
+  const { currentDate, planId } = usePlanStateStore();
+  const startQuestMutation = useStartQuestMutation();
 
   if (isLoading) return null;
   if (isError) {
     close();
     return null;
   }
+
+  const handleStartQuest = () => {
+    startQuestMutation.mutate({
+      id,
+      planId,
+      date: currentDate,
+    });
+  };
 
   return (
     <div className="fixed top-0 left-0 w-full h-dvh pt-[106px] z-50">
@@ -59,7 +71,10 @@ const QuestModal = ({ id }: QuestModalProps) => {
           <button className="w-[170px] h-[43px] bg-gray-200 rounded-[20px_20px_20px_12px] text-gray-600">
             별로예요
           </button>
-          <button className="w-[170px] h-[43px] bg-primary rounded-[20px_20px_20px_12px] text-white">
+          <button
+            className="w-[170px] h-[43px] bg-primary rounded-[20px_20px_20px_12px] text-white"
+            onClick={handleStartQuest}
+          >
             참여하기
           </button>
         </div>
