@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 
 import WishList from '@/components/main/AddOption/WishList';
 import ScheduleList from '@/components/main/Schedule/ScheduleList';
+import QuestModal from '@/components/quest/modal/QuestModal';
 import useModal, { MODAL } from '@/hook/useModal';
 import { useFetchPlan } from '@/hook/usePlan';
 import Header from '@/layout/header/Header';
@@ -19,6 +20,7 @@ const Home = () => {
   const [modalState, { openModal, closeModal }] = useModal({
     [MODAL.ADD_OPTION]: false,
     [MODAL.WISH_LIST]: false,
+    [MODAL.QUEST]: false,
   });
 
   const { data, isError, isFetching } = useFetchPlan();
@@ -52,7 +54,10 @@ const Home = () => {
           <DateViewer />
           <ScheduleList />
         </>
-        <FloatingBar openAddOption={() => openModal(MODAL.ADD_OPTION)} />
+        <FloatingBar
+          openAddOption={() => openModal(MODAL.ADD_OPTION)}
+          openQuest={() => openModal(MODAL.QUEST)}
+        />
       </main>
       {modalState.addOption && (
         <AddOption
