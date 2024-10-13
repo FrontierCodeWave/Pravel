@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import WishList from '@/components/main/AddOption/WishList';
 import ScheduleList from '@/components/main/Schedule/ScheduleList';
+import QuestModal from '@/components/quest/modal/QuestModal';
 import useModal, { MODAL } from '@/hook/useModal';
 import { useFetchPlan } from '@/hook/usePlan';
 import Header from '@/layout/header/Header';
@@ -16,9 +17,11 @@ import FloatingBar from '../components/main/FloatingBar';
 import Gnb from '../layout/navigation/Gnb';
 
 const Home = () => {
+  const [questId, setQuestId] = useState<number | null>(null);
   const [modalState, { openModal, closeModal }] = useModal({
     [MODAL.ADD_OPTION]: false,
     [MODAL.WISH_LIST]: false,
+    [MODAL.QUEST]: false,
   });
 
   const { data } = useFetchPlan();
@@ -52,7 +55,13 @@ const Home = () => {
           <DateViewer />
           <ScheduleList />
         </>
-        <FloatingBar openAddOption={() => openModal(MODAL.ADD_OPTION)} />
+        <FloatingBar
+          openAddOption={() => openModal(MODAL.ADD_OPTION)}
+          openQuest={(id) => {
+            setQuestId(id);
+            openModal(MODAL.QUEST);
+          }}
+        />
       </main>
       {modalState.addOption && (
         <AddOption
@@ -70,6 +79,9 @@ const Home = () => {
             closeModal(MODAL.ADD_OPTION);
           }}
         />
+      )}
+      {modalState.quest && questId && (
+        <QuestModal id={questId} close={() => closeModal(MODAL.QUEST)} />
       )}
     </>
   );
