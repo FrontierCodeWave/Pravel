@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { logoutAction } from '@/lib/actions/auth-action';
+import LogoutButton from '@/components/auth/LogoutButton';
 
 interface UserInfoProps {
   userId: string;
@@ -15,14 +15,7 @@ const UserInfo = ({ userId }: UserInfoProps) => {
       <div className="mt-[10px] p-[20px] bg-white rounded-[12px]">
         <div className="flex justify-between">
           <span className="text-gray-700 font-semibold">{userId}</span>
-          <form action={logoutAction}>
-            <button
-              type="submit"
-              className="w-[86px] h-[29px] text-primary text-[14px] font-semibold rounded-full border-primary border-2"
-            >
-              로그아웃
-            </button>
-          </form>
+          <LogoutButton />
         </div>
         <div className="border-gray-200 border-[1px] mt-[20px]"></div>
         <Link
