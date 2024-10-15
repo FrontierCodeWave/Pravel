@@ -10,6 +10,7 @@ import { validateId } from '@/lib/validate/auth-validate';
 import { LoginForm as LoginFormType } from '@/types/auth.type';
 
 import Button from '../button/Button';
+import FullLoadingSpinner from '../common/loading/FullLoadingSpinner';
 
 import PasswordInput from './input/PasswordInput';
 import AuthFormItem from './AuthFormItem';
@@ -30,7 +31,7 @@ const LoginForm = () => {
   };
 
   if (!error || error.redirect) {
-    return null;
+    return <FullLoadingSpinner />;
   }
 
   return (

@@ -9,6 +9,7 @@ import { validateId, validateNickname } from '@/lib/validate/auth-validate';
 import { JoinForm as JoinFormType } from '@/types/auth.type';
 
 import Button from '../button/Button';
+import FullLoadingSpinner from '../common/loading/FullLoadingSpinner';
 import InputForm from '../form/InputForm';
 
 import PasswordInput from './input/PasswordInput';
@@ -52,6 +53,10 @@ const JoinForm = () => {
       setCheckId(false);
     }
   };
+
+  if (join.isPending) {
+    return <FullLoadingSpinner />;
+  }
 
   return (
     <InputForm
