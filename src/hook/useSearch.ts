@@ -1,7 +1,11 @@
+import { useEffect, useRef, useState } from 'react';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
-import getLocation from '@/services/api/location.api';
+import { FOOD_FILTER } from '@/lib/const/search';
 import * as searchApi from '@/services/api/search.api';
+import { LocationData } from '@/types/search.type';
+
+import useFetchLocation from './useLocation';
 
 interface SearchListProps {
   lat?: number;
@@ -9,23 +13,26 @@ interface SearchListProps {
   tab: string;
 }
 
-export const useFetchSearchList = ({ lat, lng, tab }: SearchListProps) => {
+export const useFetchSearchList = ({
+  lat = 0,
+  lng = 0,
+  tab,
+}: SearchListProps) => {
   return useInfiniteQuery({
     queryKey: ['search', lat, lng, tab],
     queryFn: async ({ pageParam = 1 }) => {
       let result;
-      const { lat: initialLat, lng: initialLng } = await getLocation();
 
       if (tab === 'food') {
         result = await searchApi.fetchFood({
-          lat: lat || initialLat,
-          lng: lng || initialLng,
+          lat,
+          lng,
           pageNo: pageParam,
         });
       } else {
         result = await searchApi.fetchTour({
-          lat: lat || initialLat,
-          lng: lng || initialLng,
+          lat,
+          lng,
           pageNo: pageParam,
         });
       }
@@ -45,7 +52,63 @@ export const useFetchSearchList = ({ lat, lng, tab }: SearchListProps) => {
     initialPageParam: 1,
     gcTime: 20 * 60 * 1000,
     staleTime: 20 * 60 * 1000,
+    enabled: !!(lat && lng),
   });
+};
+
+export const useKeywordList = ({
+  filters,
+  tab,
+}: {
+  filters?: string;
+  tab: string;
+}) => {
+  const first = useRef(false);
+  const currentLocation = useFetchLocation();
+  const [location, setLocation] = useState<LocationData>();
+
+  const searchList = useFetchSearchList({
+    ...location,
+    tab,
+  });
+
+  useEffect(() => {
+    if (first.current || !currentLocation.data) return;
+
+    setLocation({
+      lat: currentLocation.data.lat,
+      lng: currentLocation.data.lng,
+    });
+
+    first.current = true;
+  }, [currentLocation, setLocation]);
+
+  if (searchList.isFetching || !searchList.data) {
+    return {
+      ...searchList,
+      data: undefined,
+      fetchData: setLocation,
+    };
+  }
+
+  const filterList = filters?.split(',');
+  const allItems = searchList.data.pages.flatMap((page) => page.list) || [];
+  const totalCount = searchList.data.pages[0]?.totalCount || 0;
+
+  const newList = allItems.filter((item) => {
+    if (filterList?.includes('all')) return true;
+    else
+      return filterList?.includes(
+        FOOD_FILTER[item.category as keyof typeof FOOD_FILTER],
+      );
+  });
+
+  return {
+    ...searchList,
+    data: newList,
+    totalCount,
+    fetchData: setLocation,
+  };
 };
 
 export const useFetchKeywordList = (keyword: string) => {

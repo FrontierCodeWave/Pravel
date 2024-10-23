@@ -1,10 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Map, MarkerClusterer } from 'react-kakao-maps-sdk';
+import {
+  FetchNextPageOptions,
+  InfiniteQueryObserverResult,
+} from '@tanstack/react-query';
+import useLocalStorage from 'use-local-storage';
 
 import useKakaoLoader from '@/hook/useKakaoLoader';
-import { useLocation } from '@/hook/useLocation';
-import { useKeywordList } from '@/hook/useSearch';
-import { ListData } from '@/types/search.type';
+import useFetchLocation from '@/hook/useLocation';
+import getLocation from '@/services/api/location.api';
+import { ListData, LocationData } from '@/types/search.type';
 
 import FullLoadingSpinner from '../common/loading/FullLoadingSpinner';
 
@@ -14,27 +19,36 @@ import MarkerPlace from './marker/MarkerPlace';
 
 interface MapBoxProps {
   tab: string;
-  filters: string;
+  list: ListData[];
+  isFetching: boolean;
+  fetchNextPage: (
+    options?: FetchNextPageOptions | undefined,
+  ) => Promise<InfiniteQueryObserverResult>;
+  hasNextPage: boolean;
+  onClickRefetch: (lat: number, lng: number) => void;
 }
 const LoadingComponent = () => <FullLoadingSpinner />;
 
-const MapBox = ({ tab, filters }: MapBoxProps) => {
+const MapBox = ({
+  tab,
+  list,
+  isFetching,
+  hasNextPage,
+  fetchNextPage,
+  onClickRefetch,
+}: MapBoxProps) => {
   const [isMapFetchError] = useKakaoLoader();
-  const {
-    data: location,
-    isError: locationFetchError,
-    refetch: refetchLocation,
-    updateLocation,
-  } = useLocation();
+  const { data: location, isError: locationFetchError } = useFetchLocation();
+  const [draggedLocation, setDraggedLocation] = useLocalStorage<
+    LocationData | undefined
+  >('draggedLocation', location);
 
-  const {
-    data: list,
-    status,
-    hasNextPage,
-    isFetching,
-    fetchNextPage,
-    fetchData,
-  } = useKeywordList({ filters, tab });
+  useEffect(() => {
+    if (draggedLocation) return;
+    if (location) {
+      setDraggedLocation(location);
+    }
+  }, [location]);
 
   const [clickedMarker, setClickedMarker] = useState<ListData | null>(null);
   const [newSearch, setNewSearch] = useState({
@@ -42,10 +56,9 @@ const MapBox = ({ tab, filters }: MapBoxProps) => {
     pageNo: 0,
   });
 
-  if (status === 'error') return <div>데이터를 불러오는데 실패했습니다.</div>;
   if (locationFetchError) return <p>위치 정보를 가져오는데 실패했습니다.</p>;
   if (isMapFetchError) return <p>지도를 불러오는데 실패했습니다.</p>;
-  if (!location) return LoadingComponent();
+  if (!draggedLocation) return LoadingComponent();
 
   const handleClickMarker = (cardInfo: ListData) => {
     setClickedMarker((prev) => {
@@ -63,10 +76,7 @@ const MapBox = ({ tab, filters }: MapBoxProps) => {
 
   const handleClickResearch = () => {
     if (newSearch.pageNo === 0) {
-      fetchData({
-        lat: location.lat,
-        lng: location.lng,
-      });
+      onClickRefetch(draggedLocation.lat, draggedLocation.lng);
     } else {
       fetchNextPage();
     }
@@ -76,21 +86,18 @@ const MapBox = ({ tab, filters }: MapBoxProps) => {
         pageNo: prev.pageNo + 1,
       };
     });
-  };
+  }
 
   const handleClickRefresh = async () => {
-    refetchLocation().then(({ data }) => {
-      fetchData({
-        lat: data!.lat,
-        lng: data!.lng,
-      });
+    const { lat, lng } = await getLocation();
 
-      setNewSearch({
-        isDragged: false,
-        pageNo: 0,
-      });
+    onClickRefetch(lat, lng);
+    setDraggedLocation({ lat, lng });
+    setNewSearch({
+      isDragged: false,
+      pageNo: 0,
     });
-  };
+  }
 
   return (
     <div className="relative">
@@ -121,7 +128,7 @@ const MapBox = ({ tab, filters }: MapBoxProps) => {
         </button>
       )}
       <Map
-        center={{ lat: location.lat, lng: location.lng }}
+        center={{ lat: draggedLocation.lat, lng: draggedLocation.lng }}
         style={{ width: '100%', height: 'calc(100vh - 200px)' }}
         onClick={handleMapClick}
         draggable={true}
@@ -133,12 +140,12 @@ const MapBox = ({ tab, filters }: MapBoxProps) => {
             isDragged: true,
             pageNo: 0,
           });
-          updateLocation({ lat: latlng.getLat(), lng: latlng.getLng() });
+          setDraggedLocation({ lat: latlng.getLat(), lng: latlng.getLng() });
         }}
       >
         <MarkerCurrent
-          lat={location.lat}
-          lng={location.lng}
+          lat={draggedLocation.lat}
+          lng={draggedLocation.lng}
           color={clickedMarker ? '#FF9040' : '#0BC58D'}
         />
         {isFetching ? (
@@ -161,7 +168,7 @@ const MapBox = ({ tab, filters }: MapBoxProps) => {
               },
             ]}
           >
-            {list?.map((marker) => (
+            {list.map((marker) => (
               <MarkerPlace
                 key={marker.contentId}
                 contentId={marker.contentId}
